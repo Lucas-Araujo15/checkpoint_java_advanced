@@ -1,6 +1,7 @@
 package com.api.streaming.controller;
 
 import com.api.streaming.domain.movie.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,7 +24,7 @@ public class MovieController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody MovieRegisterDTO movieRegisterDTO, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<?> create(@RequestBody @Valid MovieRegisterDTO movieRegisterDTO, UriComponentsBuilder uriBuilder) {
         Movie movie = movieService.create(movieRegisterDTO);
 
         URI uri = uriBuilder.path("/doctors/{id}").buildAndExpand(movie.getId()).toUri();
