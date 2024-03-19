@@ -1,9 +1,9 @@
-package com.api.streaming.domain.movie;
+package com.api.streaming.controller.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public record MovieRegisterDTO(
+public record SeriesRegisterDTO(
         @NotBlank
         String title,
 
@@ -12,9 +12,6 @@ public record MovieRegisterDTO(
 
         @NotNull
         int releasingYear,
-
-        @NotBlank
-        String director,
 
         @NotBlank
         String genre

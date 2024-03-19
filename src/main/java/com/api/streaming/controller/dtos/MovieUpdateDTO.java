@@ -1,4 +1,4 @@
-package com.api.streaming.domain.movie;
+package com.api.streaming.controller.dtos;
 
 public record MovieUpdateDTO(
         String title,

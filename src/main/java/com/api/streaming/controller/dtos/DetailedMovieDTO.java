@@ -1,4 +1,6 @@
-package com.api.streaming.domain.movie;
+package com.api.streaming.controller.dtos;
+
+import com.api.streaming.models.Movie;
 
 public record DetailedMovieDTO(
         String title,

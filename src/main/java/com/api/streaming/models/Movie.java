@@ -1,12 +1,12 @@
-package com.api.streaming.domain.movie;
+package com.api.streaming.models;
 
+import com.api.streaming.controller.dtos.MovieRegisterDTO;
+import com.api.streaming.controller.dtos.MovieUpdateDTO;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDateTime;
 
 @Table(name = "movies")
 @Entity(name= "Movie")

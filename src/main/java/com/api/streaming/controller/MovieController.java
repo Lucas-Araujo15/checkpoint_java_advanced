@@ -1,6 +1,10 @@
 package com.api.streaming.controller;
 
-import com.api.streaming.domain.movie.*;
+import com.api.streaming.controller.dtos.DetailedMovieDTO;
+import com.api.streaming.controller.dtos.MovieRegisterDTO;
+import com.api.streaming.controller.dtos.MovieUpdateDTO;
+import com.api.streaming.models.Movie;
+import com.api.streaming.services.MovieService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/movies")

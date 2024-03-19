@@ -1,4 +1,4 @@
-package com.api.streaming.domain.episode;
+package com.api.streaming.controller.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,6 +14,6 @@ public record EpisodeRegisterDTO(
         int season,
 
         @NotNull
-        int seasonId
+        Long seriesId
 ) {
 }

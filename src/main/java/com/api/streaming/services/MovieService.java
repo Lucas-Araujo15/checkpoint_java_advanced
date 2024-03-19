@@ -1,5 +1,10 @@
-package com.api.streaming.domain.movie;
+package com.api.streaming.services;
 
+import com.api.streaming.controller.dtos.DetailedMovieDTO;
+import com.api.streaming.controller.dtos.MovieRegisterDTO;
+import com.api.streaming.controller.dtos.MovieUpdateDTO;
+import com.api.streaming.models.Movie;
+import com.api.streaming.repositories.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
