@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class MovieService {
     @Autowired
@@ -43,5 +45,9 @@ public class MovieService {
     public void delete(Long id) {
         Movie movie = movieRepository.getReferenceById(id);
         movieRepository.delete(movie);
+    }
+
+    public List<DetailedMovieDTO> findByTitle(String title) {
+        return movieRepository.findByTitleContains(title).stream().map(DetailedMovieDTO::new).toList();
     }
 }

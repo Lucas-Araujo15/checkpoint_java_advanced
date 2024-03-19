@@ -1,6 +1,5 @@
 package com.api.streaming.services;
 
-import com.api.streaming.controller.dtos.DetailedMovieDTO;
 import com.api.streaming.controller.dtos.DetailedSeriesDTO;
 import com.api.streaming.controller.dtos.SeriesRegisterDTO;
 import com.api.streaming.controller.dtos.SeriesUpdateDTO;
@@ -10,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class SeriesService {
@@ -45,5 +46,9 @@ public class SeriesService {
     public void delete(Long id) {
         Series series = seriesRepository.getReferenceById(id);
         seriesRepository.delete(series);
+    }
+
+    public List<DetailedSeriesDTO> findByTitle(String title) {
+        return seriesRepository.findByTitleContains(title).stream().map(DetailedSeriesDTO::new).toList();
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/movies")
@@ -57,5 +58,11 @@ public class MovieController {
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         movieService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<DetailedMovieDTO>> findByTitle(@RequestParam String title) {
+        List<DetailedMovieDTO> detailedMovieDTOList = movieService.findByTitle(title);
+        return ResponseEntity.ok(detailedMovieDTOList);
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/series")
@@ -59,5 +60,11 @@ public class SeriesController {
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         seriesService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<DetailedSeriesDTO>> findByTitle(@RequestParam String title) {
+        List<DetailedSeriesDTO> detailedSeriesDTOList = seriesService.findByTitle(title);
+        return ResponseEntity.ok(detailedSeriesDTOList);
     }
 }
