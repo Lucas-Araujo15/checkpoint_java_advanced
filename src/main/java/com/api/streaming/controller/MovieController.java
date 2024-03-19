@@ -61,8 +61,8 @@ public class MovieController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<DetailedMovieDTO>> findByTitle(@RequestParam String title) {
-        List<DetailedMovieDTO> detailedMovieDTOList = movieService.findByTitle(title);
+    public ResponseEntity<List<DetailedMovieDTO>> findByTitleOrGenre(@RequestParam(required = false) String title, @RequestParam(required = false) String genre) {
+        List<DetailedMovieDTO> detailedMovieDTOList = movieService.findByTitleOrGenre(title, genre);
         return ResponseEntity.ok(detailedMovieDTOList);
     }
 }

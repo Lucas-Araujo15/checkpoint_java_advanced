@@ -48,7 +48,7 @@ public class SeriesService {
         seriesRepository.delete(series);
     }
 
-    public List<DetailedSeriesDTO> findByTitle(String title) {
-        return seriesRepository.findByTitleContains(title).stream().map(DetailedSeriesDTO::new).toList();
+    public List<DetailedSeriesDTO> findByTitleOrGenre(String title, String genre) {
+        return seriesRepository.findByTitleContainsOrGenreContains(title, genre).stream().map(DetailedSeriesDTO::new).toList();
     }
 }

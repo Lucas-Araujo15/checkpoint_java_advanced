@@ -47,7 +47,7 @@ public class MovieService {
         movieRepository.delete(movie);
     }
 
-    public List<DetailedMovieDTO> findByTitle(String title) {
-        return movieRepository.findByTitleContains(title).stream().map(DetailedMovieDTO::new).toList();
+    public List<DetailedMovieDTO> findByTitleOrGenre(String title, String genre) {
+        return movieRepository.findByTitleContainsOrGenreContains(title, genre).stream().map(DetailedMovieDTO::new).toList();
     }
 }

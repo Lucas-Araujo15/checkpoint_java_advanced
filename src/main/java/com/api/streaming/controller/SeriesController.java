@@ -63,8 +63,8 @@ public class SeriesController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<DetailedSeriesDTO>> findByTitle(@RequestParam String title) {
-        List<DetailedSeriesDTO> detailedSeriesDTOList = seriesService.findByTitle(title);
+    public ResponseEntity<List<DetailedSeriesDTO>> findByTitleOrGenre(@RequestParam(required = false) String title, @RequestParam(required = false) String genre) {
+        List<DetailedSeriesDTO> detailedSeriesDTOList = seriesService.findByTitleOrGenre(title, genre);
         return ResponseEntity.ok(detailedSeriesDTOList);
     }
 }
