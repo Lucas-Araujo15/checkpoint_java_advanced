@@ -7,10 +7,10 @@ import com.api.streaming.models.Episode;
 import com.api.streaming.models.Series;
 import com.api.streaming.repositories.SeriesRepository;
 import com.api.streaming.repositories.EpisodeRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class EpisodeService {
@@ -36,6 +36,7 @@ public class EpisodeService {
         return episode;
     }
 
+    @Transactional(readOnly = true)
     public DetailedEpisodeDTO get (Long id) {
         return new DetailedEpisodeDTO(episodeRepository.getReferenceById(id));
     }

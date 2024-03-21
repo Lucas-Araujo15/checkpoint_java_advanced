@@ -61,8 +61,8 @@ public class MovieController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<DetailedMovieDTO>> findByTitleOrGenre(@RequestParam(required = false) String title, @RequestParam(required = false) String genre, @RequestParam(required = false, defaultValue = "0") String releasingYear) {
-        List<DetailedMovieDTO> detailedMovieDTOList = movieService.findByParams(title, genre, Integer.parseInt(releasingYear));
+    public ResponseEntity<Page<DetailedMovieDTO>> findByParams(@RequestParam(required = false) String title, @RequestParam(required = false) String genre, @RequestParam(required = false, defaultValue = "0") String releasingYear, @PageableDefault(size = 10, page = 0) Pageable pagination) {
+        Page<DetailedMovieDTO> detailedMovieDTOList = movieService.findByParams(title, genre, Integer.parseInt(releasingYear), pagination);
         return ResponseEntity.ok(detailedMovieDTOList);
     }
 }

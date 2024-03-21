@@ -47,7 +47,7 @@ public class MovieService {
         movieRepository.delete(movie);
     }
 
-    public List<DetailedMovieDTO> findByParams(String title, String genre, int releasingYear) {
-        return movieRepository.findByParams(title, genre, releasingYear).stream().map(DetailedMovieDTO::new).toList();
+    public Page<DetailedMovieDTO> findByParams(String title, String genre, int releasingYear, Pageable pagination) {
+        return movieRepository.findByTitleContainsIgnoreCaseOrGenreContainsIgnoreCaseOrReleasingYear(title, genre, releasingYear, pagination).map(DetailedMovieDTO::new);
     }
 }

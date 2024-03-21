@@ -48,7 +48,7 @@ public class SeriesService {
         seriesRepository.delete(series);
     }
 
-    public List<DetailedSeriesDTO> findByTitleOrGenre(String title, String genre) {
-        return seriesRepository.findByTitleContainsOrGenreContains(title, genre).stream().map(DetailedSeriesDTO::new).toList();
+    public Page<DetailedSeriesDTO> findByParams(String title, String genre, int releasingYear, Pageable pagination) {
+        return seriesRepository.findByTitleContainsIgnoreCaseOrGenreContainsIgnoreCaseOrReleasingYear(title, genre, releasingYear, pagination).map(DetailedSeriesDTO::new);
     }
 }

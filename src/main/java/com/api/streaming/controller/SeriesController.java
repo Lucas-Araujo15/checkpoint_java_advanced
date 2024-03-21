@@ -63,8 +63,8 @@ public class SeriesController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<DetailedSeriesDTO>> findByTitleOrGenre(@RequestParam(required = false) String title, @RequestParam(required = false) String genre) {
-        List<DetailedSeriesDTO> detailedSeriesDTOList = seriesService.findByTitleOrGenre(title, genre);
+    public ResponseEntity<Page<DetailedSeriesDTO>> findByParams(@RequestParam(required = false) String title, @RequestParam(required = false) String genre, @RequestParam(required = false, defaultValue = "0") int releasingYear, @PageableDefault(size = 10, page = 0) Pageable pagination) {
+        Page<DetailedSeriesDTO> detailedSeriesDTOList = seriesService.findByParams(title, genre, Integer.parseInt(String.valueOf(releasingYear)), pagination);
         return ResponseEntity.ok(detailedSeriesDTOList);
     }
 }

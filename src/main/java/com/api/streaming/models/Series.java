@@ -28,7 +28,7 @@ public class Series {
 
     private String genre;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "series_id")
     private List<Episode> episodeList;
 
