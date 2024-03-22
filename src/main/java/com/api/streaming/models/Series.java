@@ -4,16 +4,14 @@ import com.api.streaming.controller.dtos.SeriesRegisterDTO;
 import com.api.streaming.controller.dtos.SeriesUpdateDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Table(name = "series")
 @Entity(name= "Series")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -30,7 +28,7 @@ public class Series {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "series_id")
-    private List<Episode> episodeList;
+    private List<Season> seasonList;
 
     public Series(SeriesRegisterDTO seriesRegisterDTO) {
         this.title = seriesRegisterDTO.title();

@@ -3,16 +3,14 @@ package com.api.streaming.models;
 import com.api.streaming.controller.dtos.SeasonRegisterDTO;
 import com.api.streaming.controller.dtos.SeasonUpdateDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Table(name = "seasons")
 @Entity(name= "Season")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

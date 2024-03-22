@@ -19,25 +19,19 @@ public class Episode {
     private Long id;
     private String title;
     private int episodeNumber;
-    private int season;
 
     @ManyToOne
-    @JoinColumn(name = "series_id")
-    private Series series;
+    @JoinColumn(name = "season_id")
+    private Season season;
 
     public Episode(EpisodeRegisterDTO episodeRegisterDTO) {
         this.episodeNumber = episodeRegisterDTO.episodeNumber();
-        this.season = episodeRegisterDTO.season();
         this.title = episodeRegisterDTO.title();
     }
 
     public void updateInformation(EpisodeUpdateDTO episodeUpdateDTO) {
         if (episodeUpdateDTO.episodeNumber() != 0) {
             this.episodeNumber = episodeUpdateDTO.episodeNumber();
-        }
-
-        if (episodeUpdateDTO.season() != 0) {
-            this.season = episodeUpdateDTO.season();
         }
 
         if (episodeUpdateDTO.title() != null) {
