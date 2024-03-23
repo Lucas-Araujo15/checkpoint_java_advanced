@@ -4,7 +4,9 @@ import com.api.streaming.controller.dtos.DetailedEpisodeDTO;
 import com.api.streaming.controller.dtos.EpisodeRegisterDTO;
 import com.api.streaming.controller.dtos.EpisodeUpdateDTO;
 import com.api.streaming.models.Episode;
+import com.api.streaming.models.Season;
 import com.api.streaming.models.Series;
+import com.api.streaming.repositories.SeasonRepository;
 import com.api.streaming.repositories.SeriesRepository;
 import com.api.streaming.repositories.EpisodeRepository;
 import org.apache.coyote.BadRequestException;
@@ -18,27 +20,22 @@ public class EpisodeService {
     private EpisodeRepository episodeRepository;
 
     @Autowired
-    private SeriesRepository seriesRepository;
+    private SeasonRepository seasonRepository;
 
     public Episode create(EpisodeRegisterDTO episodeRegisterDTO) throws BadRequestException {
 
-        if (!seriesRepository.existsById(episodeRegisterDTO.seriesId())) {
+        if (!seasonRepository.existsById(episodeRegisterDTO.seasonId())) {
             throw new BadRequestException("A série informada não existe");
         }
 
         Episode episode = new Episode(episodeRegisterDTO);
-        Series series = seriesRepository.getReferenceById(episodeRegisterDTO.seriesId());
+        Season season = seasonRepository.getReferenceById(episodeRegisterDTO.seasonId());
 
-        episode.setSeries(series);
+        episode.setSeason(season);
 
         episodeRepository.save(episode);
 
         return episode;
-    }
-
-    @Transactional(readOnly = true)
-    public DetailedEpisodeDTO get (Long id) {
-        return new DetailedEpisodeDTO(episodeRepository.getReferenceById(id));
     }
 
     public DetailedEpisodeDTO update(Long id, EpisodeUpdateDTO episodeUpdateDTO) {

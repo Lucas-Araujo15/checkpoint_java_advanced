@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Season {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -30,6 +29,11 @@ public class Season {
 
     public Season(SeasonRegisterDTO seasonRegisterDTO) {
         this.name = seasonRegisterDTO.name();
+        this.seasonNumber = seasonRegisterDTO.seasonNumber();
+
+        if (seasonRegisterDTO.episodeList() != null) {
+            this.episodeList = seasonRegisterDTO.episodeList().stream().map(Episode::new).toList();
+        }
     }
 
     public void updateInformation(SeasonUpdateDTO seasonUpdateDTO) {

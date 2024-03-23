@@ -10,10 +10,6 @@ public record EpisodeRegisterDTO(
         @NotNull
         int episodeNumber,
 
-        @NotNull
-        int season,
-
-        @NotNull
-        Long seriesId
+        Long seasonId
 ) {
 }

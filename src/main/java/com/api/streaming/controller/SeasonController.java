@@ -5,6 +5,7 @@ import com.api.streaming.models.Season;
 import com.api.streaming.models.Series;
 import com.api.streaming.services.SeasonService;
 import com.api.streaming.services.SeriesService;
+import jakarta.validation.Valid;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,8 @@ public class SeasonController {
         this.seasonService = seasonService;
     }
 
-    public ResponseEntity<?> create(SeasonRegisterDTO seasonRegisterDTO, UriComponentsBuilder uriBuilder) throws BadRequestException {
+    @PostMapping
+    public ResponseEntity<?> create(@RequestBody @Valid SeasonRegisterDTO seasonRegisterDTO, UriComponentsBuilder uriBuilder) throws BadRequestException {
         Season season = seasonService.create(seasonRegisterDTO);
 
         URI uri = uriBuilder.path("/series/{id}").buildAndExpand(season.getId()).toUri();

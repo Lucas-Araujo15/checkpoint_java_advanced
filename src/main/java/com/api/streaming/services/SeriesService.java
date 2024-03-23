@@ -48,7 +48,7 @@ public class SeriesService {
         seriesRepository.delete(series);
     }
 
-    public Page<DetailedSeriesDTO> findByParams(String title, String genre, int releasingYear, Pageable pagination) {
-        return seriesRepository.findByTitleContainsIgnoreCaseOrGenreContainsIgnoreCaseOrReleasingYear(title, genre, releasingYear, pagination).map(DetailedSeriesDTO::new);
+    public Page<DetailedSeriesDTO> findByParams(String title, String genre, int releasingYear, int seasonQuantity, Pageable pagination) {
+        return seriesRepository.findByTitleContainsIgnoreCaseOrGenreContainsIgnoreCaseOrReleasingYearOrSeasonQuantity(title, genre, releasingYear, seasonQuantity, pagination).map(DetailedSeriesDTO::new);
     }
 }

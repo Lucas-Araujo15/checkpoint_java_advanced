@@ -1,7 +1,10 @@
 package com.api.streaming.controller.dtos;
 
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.List;
 
 public record SeasonRegisterDTO(
         @NotBlank
@@ -10,7 +13,9 @@ public record SeasonRegisterDTO(
         @NotNull
         int seasonNumber,
 
-        @NotNull
-        Long seriesId
+        Long seriesId,
+
+        @Valid
+        List<EpisodeRegisterDTO> episodeList
 ) {
 }

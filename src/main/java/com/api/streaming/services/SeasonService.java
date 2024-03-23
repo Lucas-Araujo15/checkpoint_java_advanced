@@ -8,7 +8,9 @@ import com.api.streaming.repositories.SeasonRepository;
 import com.api.streaming.repositories.SeriesRepository;
 import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SeasonService {
     @Autowired
     private SeasonRepository seasonRepository;
@@ -17,6 +19,7 @@ public class SeasonService {
     private SeriesRepository seriesRepository;
 
     public Season create(SeasonRegisterDTO seasonRegisterDTO) throws BadRequestException {
+        System.out.println(seasonRegisterDTO);
         if (!seriesRepository.existsById(seasonRegisterDTO.seriesId())) {
             throw new BadRequestException("A série informada não existe");
         }
@@ -26,7 +29,10 @@ public class SeasonService {
 
         season.setSeries(series);
 
+        series.setSeasonQuantity(series.getSeasonQuantity() + 1);
+
         seasonRepository.save(season);
+        seriesRepository.save(series);
 
         return season;
     }
@@ -43,6 +49,12 @@ public class SeasonService {
 
     public void delete(Long id) {
         Season season = seasonRepository.getReferenceById(id);
+
+        Series series = season.getSeries();
+
+        series.setSeasonQuantity(series.getSeasonQuantity() - 1);
+
+        seriesRepository.save(series);
         seasonRepository.delete(season);
     }
 }

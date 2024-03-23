@@ -13,7 +13,6 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class Episode {
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

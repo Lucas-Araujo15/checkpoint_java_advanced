@@ -33,12 +33,6 @@ public class EpisodeController {
         return ResponseEntity.created(uri).build();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DetailedEpisodeDTO> get(@PathVariable("id") Long id) {
-        DetailedEpisodeDTO detailedEpisodeDTO = episodeService.get(id);
-        return ResponseEntity.ok(detailedEpisodeDTO);
-    }
-
     @PutMapping("/{id}")
     public ResponseEntity<DetailedEpisodeDTO> update(@PathVariable("id") Long id, @RequestBody EpisodeUpdateDTO episodeUpdateDTO) {
         DetailedEpisodeDTO detailedEpisodeDTO = episodeService.update(id, episodeUpdateDTO);
